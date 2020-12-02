@@ -17,50 +17,25 @@ export default {
     port: parseInt(process.env.PORT, 10),
 
     /**
-     * That long string from mlab
-     */
-    databaseURL: process.env.MONGODB_URI,
-
-    /**
-     * Your secret sauce
-     */
-    jwtSecret: process.env.JWT_SECRET,
-    jwtAlgorithm: process.env.JWT_ALGO,
-
-    /**
      * Used by winston logger
      */
     logs: {
         level: process.env.LOG_LEVEL || 'silly',
     },
 
-    /**
-     * Agenda.js stuff
-     */
-    agenda: {
-        dbCollection: process.env.AGENDA_DB_COLLECTION,
-        pooltime: process.env.AGENDA_POOL_TIME,
-        concurrency: parseInt(process.env.AGENDA_CONCURRENCY, 10),
-    },
-
-    /**
-     * Agendash config
-     */
-    agendash: {
-        user: 'agendash',
-        password: '123456'
-    },
+    
     /**
      * API configs
      */
     api: {
         prefix: '/api',
     },
+
     /**
-     * Mailgun email credentials
+     * World Weather API
      */
-    emails: {
-        apiKey: process.env.MAILGUN_API_KEY,
-        domain: process.env.MAILGUN_DOMAIN
+    weatherUrl: {
+        baseUrl: 'http://api.worldweatheronline.com/premium/v1/past-weather.ashx?format=json&key=' + process.env.WEATHER_API_KEY
     }
+    
 };
