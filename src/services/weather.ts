@@ -21,7 +21,12 @@ export default class WeatherService {
                 enddate: weatherInputDTO.toDate
             }
             const result = await get(`${config.weatherUrl.baseUrl}&${stringify(query)}`)
-            const weatherData  = await this.ProcessWeatherData(JSON.parse(result)); 
+            const data = JSON.parse(result)
+            // Check of the result was ok
+            if(data.data.hasOwnProperty('error')){
+                throw {message: data.data.error[0].msg}
+            }
+            const weatherData  = await this.ProcessWeatherData(data.data); 
             return weatherData
         } catch (e) {
             logger.error(e);
@@ -35,9 +40,8 @@ export default class WeatherService {
         try{
             const temperatureList = [];
             const humidityList = []
-            Object.entries(data.data.weather).map(item => {
+            Object.entries(data.weather).map(item => {
                 const dayData = item[1]
-                console.log(dayData);
                 temperatureList.push(parseInt(dayData.maxtempC))
                 dayData.hourly.map( hour => {
                     humidityList.push(parseInt(hour.humidity))
