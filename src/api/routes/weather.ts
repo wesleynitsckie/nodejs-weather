@@ -1,5 +1,5 @@
 import { IWeatherInputDTO } from './../../interfaces/IWeather';
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { Container } from 'typedi';
 import WeatherService from '../../services/weather';
 import { Logger } from 'winston';
