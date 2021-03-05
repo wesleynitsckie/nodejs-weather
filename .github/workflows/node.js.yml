@@ -27,7 +27,7 @@ jobs:
           push: true
           tags: user/app:latest
           secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
+            GIT_AUTH_TOKEN=${{ secrets.MY_TOKEN }}
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       env:
